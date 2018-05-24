@@ -22,13 +22,12 @@ namespace Ch8_Program2
         public int length;
         
         
-        
 
         public Form1()
         {
             InitializeComponent();
-            
-            
+            Application.Exit();
+            randNum = Num.Next(1, 101);
             BackColor = Color.FromArgb(R, G, B);
 
             //BackColor = ChangeColor();
@@ -37,12 +36,15 @@ namespace Ch8_Program2
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //label2.Visible = false;
+            
+            bool goOn = false;
+            
             UserInput = Convert.ToInt32(textBox1.Text);
-            randNum = 7;// Num.Next(1, 101);
+            textBox1.ResetText();
             if (UserInput == randNum)
             {
                 R = 0; G = 255; B = 0;
+                label2.ResetText();
                 label2.Text = "CORRECT! YOU GOT IT!!!";
                 label2.Visible = true;
                 for (int i = 0; i < 3; i++)
@@ -52,24 +54,28 @@ namespace Ch8_Program2
                     
                     Thread.Sleep(105);
                 }
-                
-                Thread.Sleep(100);
-                
-                                               
+                R = 0; G = 255; B = 0;
+                BackColor = Color.FromArgb(R, G, B);
+                Thread.Sleep(1000);
+                goOn = true;
+                label2_Click(goOn, e);
+
             }
-            if(UserInput > randNum)
+            if (UserInput > randNum)
             {
                 R = 255;
                 G = 0;
                 B = 0;
                 length = (UserInput - randNum);
+                label2.ResetText();
                 label2.Text = "Lower...";
                 label2.Visible = true;
                 for (int i = 0; i < length; i++)
                 {
                     R = (int)(R - 1.5);
                 }
-                
+                BackColor = Color.FromArgb(R, G, B);
+                Thread.Sleep(500);
                 
 
             }
@@ -79,6 +85,7 @@ namespace Ch8_Program2
                 G = 0;
                 B = 255;
                 length = (UserInput - randNum);
+                label2.ResetText();
                 label2.Text = "Higher...";
                 label2.Visible = true;
                 for (int i = 0; i < length; i++)
@@ -86,21 +93,11 @@ namespace Ch8_Program2
                     B = (int)(B-1.5);
                 }
                 BackColor = Color.FromArgb(R, G, B);
-                
+                Thread.Sleep(100);
 
             }
-            bool goOn = false, flag = true;
-            int timer = 0;
-            while(flag)
-            {
-                Thread.Sleep(10);
-                timer++;
-                if (timer > 100)
-                {
-                    goOn = true; flag = false;
-                }
-            }           
-            label2_Click(goOn, e);
+            Thread.Sleep(500);
+            
         }
 
         private void button1_Paint(object sender, PaintEventArgs e)
@@ -115,20 +112,11 @@ namespace Ch8_Program2
 
         private void label2_Click(object sender, EventArgs e)
         {
-            //label2.Visible = true;
-            Thread.Sleep(5000);
+            label2.Visible = false;
+            Thread.Sleep(100);
             //label2.ResetText();
-            bool goOn = false, flag = true;
-            int timer = 0;
-            while (flag)
-            {
-                Thread.Sleep(1);
-                timer++;
-                if (timer > 10)
-                {
-                    goOn = true; flag = false;
-                }
-            }
+            bool goOn = false;
+            Thread.Sleep(100); goOn = true;
             label3_Click(goOn, e);
 
 
@@ -152,20 +140,16 @@ namespace Ch8_Program2
 
         private void label3_Click(object sender, EventArgs e)
         {
-            label2.Visible = false;
+            //label2.Visible = false;
+            label3.Text = ("Nice Job! It was: " + randNum);
             label3.Visible = true;
-            label3.Text = ("It was: " + randNum);
-            bool goOn = false, flag = true;
-            int timer = 0;
-            while (flag)
-            {
-                Thread.Sleep(10);
-                timer++;
-                if (timer > 10)
-                {
-                }
-            }
+            //Exit
             
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
