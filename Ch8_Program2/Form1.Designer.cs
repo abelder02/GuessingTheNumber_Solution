@@ -37,6 +37,7 @@ namespace Ch8_Program2
             this.label3 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // button1
@@ -71,7 +72,6 @@ namespace Ch8_Program2
             this.textBox1.Size = new System.Drawing.Size(55, 22);
             this.textBox1.TabIndex = 2;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_MultilineChanged);
-            
             // 
             // label2
             // 
@@ -122,12 +122,23 @@ namespace Ch8_Program2
             this.label4.Text = "label4";
             this.label4.Visible = false;
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(486, 64);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(46, 17);
+            this.label5.TabIndex = 7;
+            this.label5.Text = "label5";
+            this.label5.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Menu;
             this.ClientSize = new System.Drawing.Size(605, 309);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.label3);
@@ -153,6 +164,7 @@ namespace Ch8_Program2
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label4;
+        private Label label5;
     }
 }
 

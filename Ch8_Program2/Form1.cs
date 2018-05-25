@@ -32,8 +32,9 @@ namespace Ch8_Program2
             Application.Exit();
             randNum = Num.Next(1, 101);
             BackColor = Color.FromArgb(R, G, B);
+            label5.Text = "" + randNum; //
+            //label5.Visible = true; //This is check for troubleshooting 
 
-            
         }
 
 
@@ -57,18 +58,18 @@ namespace Ch8_Program2
                 if (UserInput == randNum)
                 {
                     R = 0; G = 255; B = 0;
-                    label2.ResetText();
+                    //label2.ResetText();
                     label2.Text = "CORRECT! YOU GOT IT!!!";
                     label2.Visible = true;
-                    for (int i = 0; i < 3; i++)
-                    {
-                        R += 50; B += 50; G -= 50;
-                        BackColor = Color.FromArgb(R, G, B);
+                    //for (int i = 0; i < 3; i++)
+                    //{
+                    //    R += 50; B += 50; G -= 50;
+                    //    BackColor = Color.FromArgb(R, G, B);
 
-                        Thread.Sleep(105);
-                    }
-                    R = 0; G = 255; B = 0;
-                    BackColor = Color.FromArgb(R, G, B);
+                    //    Thread.Sleep(105);
+                    //}
+                    //R = 0; G = 255; B = 0;
+                    //BackColor = Color.FromArgb(R, G, B);
                     Thread.Sleep(100);
                     goOn = true;
                     label2_Click(goOn, e);
@@ -87,7 +88,7 @@ namespace Ch8_Program2
                     {
                         R = (int)(R - 1.5);
                     }
-                    BackColor = Color.FromArgb(R, G, B);
+                    //BackColor = Color.FromArgb(R, G, B);
                     //Thread.Sleep(500);
 
 
@@ -105,10 +106,11 @@ namespace Ch8_Program2
                     {
                         B = (int)(B - 1.5);
                     }
-                    BackColor = Color.FromArgb(R, G, B);
+                    //BackColor = Color.FromArgb(R, G, B);
                     Thread.Sleep(100);
 
                 }
+                BackColor = Color.FromArgb(R, G, B);
                 textBox1.ResetText();
                 Thread.Sleep(750);
             }
@@ -138,28 +140,29 @@ namespace Ch8_Program2
 
         private void label2_Paint(object sender, PaintEventArgs e)
         {
-            label2.BackColor = Color.DarkSlateBlue;
+            //label2.BackColor = Color.DarkSlateBlue;
         }
 
         private void Form1_Paint(object senderer, PaintEventArgs e)
         {
 
-            BackColor = Color.FromArgb(R, G, B);
+            //BackColor = Color.FromArgb(R, G, B);
         }
 
         private void button1_DragOver(object sender, DragEventArgs e)
         {
-            button1.BackColor = Color.Azure;
+            button1.BackColor = Color.DarkCyan;
         }
 
         private void label3_Click(object sender, EventArgs e)
         {
             //label2.Visible = false;
             label2.Text = ("Nice Job! It was: " + randNum);
-            label3.Text = ("It took you " + guessNum + "guess!");
-            label3.Visible = true; //label4.Visible = true;
-            //Exit
+            label3.Text = ("It took you " + guessNum + " guesses!");
+            label3.Visible = true; label2.Visible = true;
             
+            //Exit
+
         }
 
         private void button2_Click(object sender, EventArgs e)
