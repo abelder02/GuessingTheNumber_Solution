@@ -21,6 +21,7 @@ namespace Ch8_Program2
         public int B = 204;
         public int length;
         public int guessNum = 0;
+        public bool yell;
         
         
 
@@ -39,7 +40,7 @@ namespace Ch8_Program2
         private void button1_Click(object sender, EventArgs e)
         {
             label4.Visible = false;
-            string CheckUserInput = textBox1.Text;
+            string CheckUserInput = textBox1.Text.Replace("\r\n", "");
             bool goOn = false; bool emptyOrNull = String.IsNullOrEmpty(CheckUserInput);
             if (emptyOrNull)
             {
@@ -51,8 +52,8 @@ namespace Ch8_Program2
             {
                 
                 guessNum++;
-                UserInput = Convert.ToInt32(textBox1.Text);
-                textBox1.ResetText();
+                UserInput = Convert.ToInt32(CheckUserInput);
+                //textBox1.ResetText();
                 if (UserInput == randNum)
                 {
                     R = 0; G = 255; B = 0;
@@ -68,7 +69,7 @@ namespace Ch8_Program2
                     }
                     R = 0; G = 255; B = 0;
                     BackColor = Color.FromArgb(R, G, B);
-                    Thread.Sleep(1000);
+                    Thread.Sleep(100);
                     goOn = true;
                     label2_Click(goOn, e);
 
@@ -79,7 +80,7 @@ namespace Ch8_Program2
                     G = 0;
                     B = 0;
                     length = (UserInput - randNum);
-                    label2.ResetText();
+                    //label2.ResetText();
                     label2.Text = "Lower...";
                     label2.Visible = true;
                     for (int i = 0; i < length; i++)
@@ -97,7 +98,7 @@ namespace Ch8_Program2
                     G = 0;
                     B = 255;
                     length = (UserInput - randNum);
-                    label2.ResetText();
+                    //label2.ResetText();
                     label2.Text = "Higher...";
                     label2.Visible = true;
                     for (int i = 0; i < length; i++)
@@ -108,8 +109,8 @@ namespace Ch8_Program2
                     Thread.Sleep(100);
 
                 }
-
-                Thread.Sleep(500);
+                textBox1.ResetText();
+                Thread.Sleep(750);
             }
         }
 
@@ -125,7 +126,7 @@ namespace Ch8_Program2
 
         private void label2_Click(object sender, EventArgs e)
         {
-            label2.Visible = false;
+            //label2.Visible = false;
             Thread.Sleep(100);
             //label2.ResetText();
             bool goOn = false;
@@ -154,8 +155,8 @@ namespace Ch8_Program2
         private void label3_Click(object sender, EventArgs e)
         {
             //label2.Visible = false;
-            label3.Text = ("Nice Job! It was: " + randNum);
-            label4.Text = ("It took you " + guessNum + "guess!");
+            label2.Text = ("Nice Job! It was: " + randNum);
+            label3.Text = ("It took you " + guessNum + "guess!");
             label3.Visible = true; //label4.Visible = true;
             //Exit
             
@@ -169,6 +170,41 @@ namespace Ch8_Program2
         private void Form1_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void textBox1_MultilineChanged(object sender, EventArgs e)
+        {
+            bool run = false;
+            var input = textBox1.Text;
+            try
+            {
+                int.Parse(input);
+                run = true;
+            }
+            catch (FormatException)
+            {
+                yell = true;                
+            }
+            if(!textBox1.Text.Contains("\r\n"))
+            {
+                run = false;
+
+            }
+            else if (String.IsNullOrWhiteSpace(textBox1.Text))
+            {
+                run = false;
+                label1.Text = "TYPE IN A NUMBER";
+                
+            }
+            else
+            {
+                label1.Text = "Guess a number between 0 and 100:";
+            }
+            if (run)
+            {
+                button1_Click(sender, e);
+            }
+            
         }
     }
 }
